@@ -1,0 +1,17 @@
+{
+  "searchPlaceholder": "Search animals, breeds...",
+  "selectCategory": "Select Category",
+  "viewAll": "View All",
+  "viewNearby": "View Nearby Ads",
+  "postAd": "+ Post Ad",
+  "verified": "Verified",
+  "currency": "Rs",
+  "views": "views",
+  "categories": {
+    "all": "All Categories",
+    "cows": "Cows & Bulls",
+    "goats": "Goats / Bakray",
+    "sheep": "Sheep / Chhatray",
+    "buffaloes": "Buffaloes"
+  }
+}
