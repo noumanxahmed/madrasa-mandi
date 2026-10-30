@@ -55,11 +55,11 @@ const CATEGORIES = [
     labelUr: "بھینسیں",
   },
   {
-    id: "Camel",
-    icon: "sunny-outline",
-    key: "categories.camels",
-    labelEn: "Camels / Oont",
-    labelUr: "اونٹ",
+    id: "Parrot",
+    icon: "color-palette-outline",
+    key: "categories.parrots",
+    labelEn: "Parrots / Parinday",
+    labelUr: "طوطے / پرندے",
   },
 ];
 

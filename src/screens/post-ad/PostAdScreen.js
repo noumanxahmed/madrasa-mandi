@@ -24,7 +24,7 @@ const CATEGORIES = [
   { id: "Goat", labelEn: "Bakray", labelUr: "بکرا" },
   { id: "Sheep", labelEn: "Chhatray", labelUr: "چھترا" },
   { id: "Buffalo", labelEn: "Buffalo", labelUr: "بھینس" },
-  { id: "Camel", labelEn: "Camel / Oont", labelUr: "اونٹ" },
+  { id: "Parrot", labelEn: "Parrot / Parinda", labelUr: "طوطا / پرندہ" },
 ];
 
 const TEETH_OPTIONS = [
@@ -79,7 +79,6 @@ export default function PostAdScreen({ onBack, onSuccess }) {
     }
   }, [currentUser, userProfile]);
 
-  // SRD FR-05: Dual Media Input — 1. Gallery Picker with Compression (quality: 0.6)
   const handlePickFromGallery = async () => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permission.granted) {
@@ -103,7 +102,6 @@ export default function PostAdScreen({ onBack, onSuccess }) {
     }
   };
 
-  // SRD FR-05: Dual Media Input — 2. Live Camera Capture with Compression (quality: 0.6)
   const handleTakePhoto = async () => {
     const permission = await ImagePicker.requestCameraPermissionsAsync();
     if (!permission.granted) {
@@ -134,7 +132,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
 
   const handleSubmit = async () => {
     if (!title.trim()) {
-      Alert.alert("Missing Info", "Please provide a title for the animal.");
+      Alert.alert("Missing Info", "Please provide a title for the listing.");
       return;
     }
     if (!pricePKR.trim() || isNaN(Number(pricePKR))) {
@@ -225,7 +223,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
           <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>
-          {locale === "ur" ? "اشتہار شائع کریں" : "Post Livestock Ad"}
+          {locale === "ur" ? "اشتہار شائع کریں" : "Post Listing"}
         </Text>
         <View style={{ width: 24 }} />
       </View>
@@ -234,16 +232,14 @@ export default function PostAdScreen({ onBack, onSuccess }) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* SRD FR-05: Dual Media Input (Camera + Gallery) */}
         <Text style={styles.sectionTitle}>
-          {locale === "ur" ? "تصاویر شامل کریں" : "Upload Animal Photos"}
+          {locale === "ur" ? "تصاویر شامل کریں" : "Upload Photos"}
         </Text>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.mediaRow}
         >
-          {/* Live Camera Button */}
           <TouchableOpacity style={styles.uploadCard} onPress={handleTakePhoto}>
             <Ionicons name="camera" size={28} color="#2E7D32" />
             <Text style={styles.uploadText}>
@@ -251,7 +247,6 @@ export default function PostAdScreen({ onBack, onSuccess }) {
             </Text>
           </TouchableOpacity>
 
-          {/* Gallery Button */}
           <TouchableOpacity
             style={styles.uploadCard}
             onPress={handlePickFromGallery}
@@ -277,7 +272,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
 
         {/* Category Selector */}
         <Text style={styles.sectionTitle}>
-          {locale === "ur" ? "جانور کی قسم" : "Select Category"}
+          {locale === "ur" ? "قسم منتخب کریں" : "Select Category"}
         </Text>
         <View style={styles.chipRow}>
           {CATEGORIES.map((cat) => (
@@ -298,7 +293,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
           ))}
         </View>
 
-        {/* Mandi Teeth (Danda) Selection */}
+        {/* Teeth Selector */}
         <Text style={styles.sectionTitle}>
           {locale === "ur" ? "دانت (دوندہ / چوگہ)" : "Teeth Status"}
         </Text>
@@ -346,15 +341,15 @@ export default function PostAdScreen({ onBack, onSuccess }) {
 
         {/* Input Fields */}
         <Text style={styles.sectionTitle}>
-          {locale === "ur" ? "جانور کی معلومات" : "Animal Information"}
+          {locale === "ur" ? "تفصیلات" : "Listing Information"}
         </Text>
 
         <TextInput
           style={styles.input}
           placeholder={
             locale === "ur"
-              ? "اشتہار کا عنوان (مثال: ساہیوال بچھڑا)"
-              : "Listing Title (e.g. Sahiwal Pure Calf)"
+              ? "عنوان (مثال: خوبصورت طوطا / ساہیوال بچھڑا)"
+              : "Listing Title (e.g. Talking Ringneck Parrot)"
           }
           placeholderTextColor="#999"
           value={title}
@@ -365,9 +360,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
           <TextInput
             style={[styles.input, styles.halfInput]}
             placeholder={
-              locale === "ur"
-                ? "نسل (مثال: ساہیوال، بیوٹل)"
-                : "Breed (e.g. Sahiwal)"
+              locale === "ur" ? "نسل / قسم (مثال: را طوطا)" : "Breed / Type"
             }
             placeholderTextColor="#999"
             value={breed}
@@ -375,7 +368,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
           />
           <TextInput
             style={[styles.input, styles.halfInput]}
-            placeholder={locale === "ur" ? "وزن (کلوگرام)" : "Weight (in KG)"}
+            placeholder={locale === "ur" ? "وزن / عمر" : "Weight / Age"}
             placeholderTextColor="#999"
             keyboardType="numeric"
             value={weight}
@@ -392,9 +385,9 @@ export default function PostAdScreen({ onBack, onSuccess }) {
           onChangeText={setPricePKR}
         />
 
-        {/* Quick City Chips + City Input */}
+        {/* Quick City Chips */}
         <Text style={styles.sectionTitle}>
-          {locale === "ur" ? "شہر / منڈی" : "City / Mandi Location"}
+          {locale === "ur" ? "شہر / مقام" : "City Location"}
         </Text>
         <ScrollView
           horizontal
@@ -425,9 +418,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
 
         <TextInput
           style={styles.input}
-          placeholder={
-            locale === "ur" ? "شہر کا نام لکھیں" : "Or type city / tehsil name"
-          }
+          placeholder={locale === "ur" ? "شہر کا نام" : "Type city name"}
           placeholderTextColor="#999"
           value={city}
           onChangeText={setCity}
@@ -449,9 +440,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
         <TextInput
           style={styles.input}
           placeholder={
-            locale === "ur"
-              ? "واٹس ایپ / فون نمبر (03001234567)"
-              : "WhatsApp Phone (e.g. 03001234567)"
+            locale === "ur" ? "فون نمبر (03001234567)" : "Phone Number"
           }
           placeholderTextColor="#999"
           keyboardType="phone-pad"
@@ -462,9 +451,7 @@ export default function PostAdScreen({ onBack, onSuccess }) {
         <TextInput
           style={[styles.input, styles.textArea]}
           placeholder={
-            locale === "ur"
-              ? "مزید تفصیلات (اختیاری)"
-              : "Description / Details (Optional)"
+            locale === "ur" ? "مزید تفصیلات" : "Description (Optional)"
           }
           placeholderTextColor="#999"
           multiline

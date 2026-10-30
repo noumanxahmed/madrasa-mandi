@@ -9,13 +9,13 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBLYy-JpRKt-474jtDpC_M9kEuGOSJ5JpY",
-  authDomain: "madrasa-mandi.firebaseapp.com",
-  projectId: "madrasa-mandi",
-  storageBucket: "madrasa-mandi.firebasestorage.app",
-  messagingSenderId: "750597462837",
-  appId: "1:750597462837:web:e296d909768d8d22c08a7c",
-  measurementId: "G-90Q6CCV9C8",
+  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();

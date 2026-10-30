@@ -1,7 +1,8 @@
 import * as FileSystem from "expo-file-system/legacy";
 
-const CLOUD_NAME = "djmskqcsu";
-const UPLOAD_PRESET = "mandi_uploads";
+const CLOUD_NAME = process.env.EXPO_PUBLIC_CLOUDINARY_CLOUD_NAME || "djmskqcsu";
+const UPLOAD_PRESET =
+  process.env.EXPO_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "mandi_uploads";
 
 /**
  * Uploads a local file URI to Cloudinary via base64 encoding using legacy API.
